@@ -1,0 +1,39 @@
+services:
+  keycloak-1:
+    image: quay.io/keycloak/keycloak:26.5.2
+    container_name: keycloak-1
+    restart: always
+    command: start-dev --import-realm
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./test-data/stage-1/:/opt/keycloak/data/import
+    ports:
+      - "8081:8080"
+
+  keycloak-2:
+    image: quay.io/keycloak/keycloak:26.5.2
+    container_name: keycloak-2
+    restart: always
+    command: start-dev --import-realm
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./test-data/stage-2/:/opt/keycloak/data/import
+    ports:
+      - "8082:8080"
+
+  keycloak-3:
+    image: quay.io/keycloak/keycloak:26.5.2
+    container_name: keycloak-3
+    restart: always
+    command: start-dev --import-realm
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./test-data/stage-3/:/opt/keycloak/data/import
+    ports:
+      - "8083:8080"
